@@ -46,3 +46,28 @@ def sort_choices(lst):
 |16000     |17,047     |8,828      |30,531     |30,796     |  
 ---  
 Самым эффективным методом оказался метод выбора. С другой стороны улучшенная пузырьковая сортировка, с возможностью остановки сортировки, если список уже отсортирован, оказался медленнее обычного пузырькового метода, а ситуация, когда такой метод оказывается быстрее, крайне редкая. Метод сортироввки вставкой показал средний результат относительно остальных методов.  
+```py
+def read_txt():
+    with open('Words.txt', encoding='utf-8') as file:
+        text = file.read().split('\n')
+    return text
+
+
+def find_word(text, word):
+    left = 0
+    right = len(text) - 1
+    while True:
+        mid = (left + right) // 2
+        if text[mid] == word:
+            return "Слово на позиции: {0}".format(mid + 1)
+        if (mid < left or mid > right):
+            return "Нет слова в словаре"
+        if text[mid] < word:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+
+word = "поиск"
+print (find_word(read_txt(), word))
+``` 
